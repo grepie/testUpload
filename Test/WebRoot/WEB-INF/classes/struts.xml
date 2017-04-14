@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.action.extension" value="do,,"></constant>
+	<package name="user" namespace="/" extends="struts-default">
+		<!-- class属性的取值为spring容器中actionBean的id -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="index">/index.jsp</result>
+			<result name="tonew">/new.jsp</result>
+			<result name="canceladd">/search.jsp</result>
+			<result name="detail">/detail.jsp</result>
+			<result >/search.jsp</result>
+			
+			<!--
+			package必须继承json-default
+			result的type必须是json
+			 做出ajax请求的响应，响应的数据安装json格式响应
+			如果给root属性注入的值为集合，响应到客户端的是json的数组
+			如果给root属性注入的对象，直接响应json对象
+			需要响应回去的集合或者对象必须作为Action的属性出现，同时提供get方法
+			 -->
+		<!-- 	<result name="repJson" type="json">
+				<param name="root">ulist</param>
+			</result> -->
+			
+			<!-- 用户列表 -->
+			<result name="userList">/userList.jsp</result>
+		</action>
+		<action name="toSearch" class="userAction" method="toSearch">
+			<result name="success">/index.jsp</result>
+		</action>
+
+	</package>
+</struts>    
